@@ -4,8 +4,6 @@ from django.db import migrations, models
 
 
 def combine_names(apps, schema_editor):
-    # We can't import the Person model directly as it may be a newer
-    # version than this migration expects. We use the historical version.
     Author = apps.get_model('authors', 'Author')
     for person in Author.objects.all():
         person.full_name = '%s %s' % (person.first_name, person.last_name)
